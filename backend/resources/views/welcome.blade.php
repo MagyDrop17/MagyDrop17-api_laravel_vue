@@ -11,7 +11,7 @@
     </head>
     <body class="antialiased">
 
-        <div id="app"></div>
+        <div id="app" class="min-h-screen bg-gray-100"></div>
 
     </body>
 </html>

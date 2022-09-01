@@ -16,4 +16,13 @@ export default defineConfig({
             },
         })
     ],
+    css: {
+        preprocessorOptions: {
+            plugins: {
+                tailwindcss: {},
+                autoprefixer: {},
+            },
+        },
+    },
+
 });
