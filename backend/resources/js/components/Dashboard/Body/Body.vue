@@ -60,9 +60,22 @@
 </template>
 
 <script>
+    import { onMounted } from 'vue'
+    import usePosts from '../../../composables/post';
 
     export default {
-        data() {
+
+        setup() {
+            const { posts, getPosts } = usePosts()
+            onMounted(getPosts)
+
+            return {
+                posts
+            }
+
+        }
+
+       /*  data() {
             return {
                 posts: []
             }
@@ -76,7 +89,7 @@
                 .then(response => this.posts = response.data)
                 .catch(error => console.log(error));
             }
-        }
+        } */
     }
 
 </script>
