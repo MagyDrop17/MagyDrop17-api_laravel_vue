@@ -3,4 +3,10 @@ import '../css/app.css';
 
 import { createApp } from "vue"
 import App from "./App.vue"
-createApp(App).mount('#app')
+import LaravelVuePagination from 'laravel-vue-pagination';
+
+
+createApp(App)
+    .component('Pagination', LaravelVuePagination)
+    .mount('#app')
+

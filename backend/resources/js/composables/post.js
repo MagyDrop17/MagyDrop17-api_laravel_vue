@@ -4,13 +4,13 @@ export default function usePost() {
 
     const posts = ref([])
 
-    const getPosts = async () => {
+    const getPosts = async (page = 1) => {
 
         try {
 
-            axios.get('/api/posts')
+            axios.get('/api/posts?page=' + page)
                 .then(response => {
-                    posts.value = response.data.data
+                    posts.value = response.data
                 })
 
         } catch (error) {

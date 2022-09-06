@@ -23,6 +23,10 @@
                                         </th>
                                         <th class="px-6 py-3 bg-gray-50 text-left">
                                             <span
+                                                class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Category</span>
+                                        </th>
+                                        <th class="px-6 py-3 bg-gray-50 text-left">
+                                            <span
                                                 class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Content</span>
                                         </th>
                                         <th class="px-6 py-3 bg-gray-50 text-left">
@@ -33,12 +37,15 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                                    <tr v-for="post in posts">
+                                    <tr v-for="post in posts.data">
                                         <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
                                             {{ post.id }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
                                             {{ post.title }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
+                                            {{ post.category }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">Lorem
                                             {{ post.content }}
@@ -49,6 +56,9 @@
                                     </tr>
                                 </tbody>
                             </table>
+
+                            <Pagination :data="posts" @pagination-change-page="getPosts" />
+
                         </div>
                     </div>
 
@@ -70,7 +80,8 @@
             onMounted(getPosts)
 
             return {
-                posts
+                posts,
+                getPosts,
             }
 
         }
