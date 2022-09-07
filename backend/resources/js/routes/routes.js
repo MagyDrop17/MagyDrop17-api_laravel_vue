@@ -8,12 +8,18 @@ const routes = [
     {
         path: '/',
         name: 'post.Index',
-        component: PostDashboard
+        component: PostDashboard,
+        meta: {
+            title: 'Index'
+        }
     },
     {
         path: '/post/create',
         name: 'post.Create',
-        component: PostCreate
+        component: PostCreate,
+        meta: {
+            title: 'Post Create'
+        }
     },
 ];
 

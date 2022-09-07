@@ -1,3 +1,7 @@
+<script setup>
+    import Logo from "./components/Logo.vue";
+</script>
+
 <template>
 
     <nav class="bg-white border-b border-gray-100">
@@ -31,9 +35,23 @@
 
     </nav>
 
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight"> {{ currentPageTitle }} </h2>
+        </div>
+    </header>
+
 </template>
 
 
-<script setup>
-    import Logo from "./components/Logo.vue";
+<script>
+
+    export default {
+        computed: {
+            currentPageTitle() {
+                return this.$route.meta.title
+            }
+        }
+    }
+
 </script>
