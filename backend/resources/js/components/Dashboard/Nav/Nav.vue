@@ -12,16 +12,15 @@
 
                         <Logo />
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <router-link to="/" active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
-                                Posts
-                            </router-link>
-                            <router-link to="/post/create" active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
-                                Create Post
-                            </router-link>
-                        </div>
+                    </div>
 
-
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <router-link :to="{name: 'post.Index'}" active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                            Posts
+                        </router-link>
+                        <router-link :to="{name: 'post.Create'}" active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                            Create Post
+                        </router-link>
                     </div>
 
                 </div>
