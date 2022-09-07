@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import PostDashboard from './../components/Dashboard/Dashboard.vue';
-import PostCreate from './../components/Dashboard/Create.vue';
+import Index from './../components/Dashboard/Body/Pages/Table.vue';
+import PostCreate from './../components/Dashboard/Body/Pages/Create.vue';
 
 
 const routes = [
     {
         path: '/',
         name: 'post.Index',
-        component: PostDashboard,
+        component: Index,
         meta: {
             title: 'Index'
         }
