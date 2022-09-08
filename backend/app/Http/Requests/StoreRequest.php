@@ -30,4 +30,11 @@ class StoreRequest extends FormRequest
         ];
     }
 
+    public function attributes()
+    {
+        return [
+            'category_id' => 'category',
+        ];
+    }
+
 }
