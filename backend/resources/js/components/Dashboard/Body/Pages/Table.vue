@@ -151,6 +151,9 @@
                         </div>
                     </div>
                 </th>
+                <th class="px-6 py-3 bg-gray-50 text-left">
+                    Actions
+                </th>
             </tr>
         </thead>
 
@@ -181,6 +184,11 @@
                     class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900"
                 >
                     {{ post.created_at }}
+                </td>
+                <td
+                    class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900"
+                >
+                    <router-link :to="{name:'post.edit', params: {id: post.id}}">Edit</router-link>
                 </td>
             </tr>
         </tbody>

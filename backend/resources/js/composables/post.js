@@ -4,8 +4,10 @@ import { useRouter } from 'vue-router';
 export default function usePost() {
 
     const posts = ref([]);
+    const post = ref([]);
     const router = useRouter();
     const validationErrors = ref([]);
+    const isLoading = ref(false);
 
     const getPosts = async (page = 1,
                             category = '',
@@ -30,6 +32,17 @@ export default function usePost() {
 
     const storePosts = async (post) => {
 
+        if (isLoading.value) return;
+        isLoading.value = true;
+        validationErrors.value = {};
+
+        let serializedPost = new FormData();
+        for (let item in post) {
+            if (post.hasOwnProperty(item)) {
+                serializedPost.append(item, post[item]);
+            }
+        }
+
         axios.post('/api/posts', post)
         .then(response => {
             router.push({ name: 'post.Index' })
@@ -37,15 +50,49 @@ export default function usePost() {
             if (error.response?.data) {
                 validationErrors.value = error.response.data.errors;
             }
-        });
+        })
+        .finally(() => isLoading.value = false);
+
+    }
+
+    const getPost = async (id) => {
+
+        axios.get('/api/posts/' + id)
+            .then(response => {
+                post.value = response.data.data;
+            }
+        );
+
+    }
+
+    const updatePost = async (post) => {
+
+        if (isLoading.value) return;
+
+        isLoading.value = true;
+        validationErrors.value = {};
+
+        axios.put('/api/posts/' + post.id , post)
+        .then(response => {
+            router.push({ name: 'post.Index' })
+        }).catch(error => {
+            if (error.response?.data) {
+                validationErrors.value = error.response.data.errors;
+            }
+        })
+        .finally(() => isLoading.value = false);
 
     }
 
     return {
         posts,
+        post,
         getPosts,
+        getPost,
         storePosts,
-        validationErrors
+        updatePost,
+        validationErrors,
+        isLoading
     }
 
 }

@@ -7,6 +7,7 @@ import LaravelVuePagination from 'laravel-vue-pagination';
 
 import router from './routes/routes';
 
+
 createApp(App)
     .use(router)
     .component('Pagination', LaravelVuePagination)
