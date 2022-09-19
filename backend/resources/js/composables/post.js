@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 import { useRouter } from 'vue-router';
 
 export default function usePost() {
@@ -8,6 +8,7 @@ export default function usePost() {
     const router = useRouter();
     const validationErrors = ref([]);
     const isLoading = ref(false);
+    const swal = inject('$swal');
 
     const getPosts = async (page = 1,
                             category = '',
@@ -46,6 +47,10 @@ export default function usePost() {
         axios.post('/api/posts', post)
         .then(response => {
             router.push({ name: 'post.Index' })
+            swal({
+                icon: 'success',
+                title: 'Post created!'
+            })
         }).catch(error => {
             if (error.response?.data) {
                 validationErrors.value = error.response.data.errors;
@@ -75,6 +80,10 @@ export default function usePost() {
         axios.put('/api/posts/' + post.id , post)
         .then(response => {
             router.push({ name: 'post.Index' })
+            swal({
+                icon: 'success',
+                title: 'Post updated!'
+            })
         }).catch(error => {
             if (error.response?.data) {
                 validationErrors.value = error.response.data.errors;

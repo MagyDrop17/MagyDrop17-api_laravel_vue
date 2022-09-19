@@ -13,6 +13,7 @@ class PostController extends Controller
 {
 
     public function index() {
+
         /* return Post::all(); */
 
         $orderColumn = request('order_column', 'created_at');
@@ -35,6 +36,7 @@ class PostController extends Controller
             ->paginate(2);
 
         return PostResource::collection($post);
+
     }
 
     public function store(StoreRequest $request) {
