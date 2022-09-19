@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ref, inject } from 'vue'
 import { useRouter } from 'vue-router';
 
@@ -93,6 +94,43 @@ export default function usePost() {
 
     }
 
+    const deletePost = async (id) => {
+
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            confirmButtonColor: '#ef4444',
+            timer: 20000,
+            timerProgressBar: true,
+            reverseButtons: true,
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+
+                axios.delete('/api/posts/' + id)
+                    .then(response => {
+                        getPosts();
+                        router.push({ name: 'post.Index' })
+                        swal({
+                            icon: 'success',
+                            title: 'Post deleted!'
+                        })
+                    })
+                    .catch(error => {
+                        swal({
+                            icon: 'error',
+                            title: 'Something went wrong deleted!'
+                        })
+                    })
+                }
+        })
+
+    }
+
     return {
         posts,
         post,
@@ -100,6 +138,7 @@ export default function usePost() {
         getPost,
         storePosts,
         updatePost,
+        deletePost,
         validationErrors,
         isLoading
     }
